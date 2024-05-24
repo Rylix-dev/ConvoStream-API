@@ -1,0 +1,7 @@
+api/.env
+api/node_modules
+tests
+backend/node_modules
+backend/.env
+api/dist
+
