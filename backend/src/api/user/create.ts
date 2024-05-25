@@ -1,13 +1,12 @@
 import express from "express";
 import verifyAccess from "../../middleware/verifyAccess.js";
 import { z } from "zod";
-import mongoose from "mongoose";
-import { UserSchema } from "../../schemas/UserSchema.js";
 import bcrypt from "bcryptjs";
+import reviseDB from "../../middleware/reviseDB.js";
 
 const router = express.Router();
 
-router.post("/", verifyAccess, async (req, res) => {
+router.post("/", verifyAccess, reviseDB, async (req, res) => {
   const { firstName, lastName, email, username, password, publicKey } =
     req.body;
 
@@ -37,9 +36,7 @@ router.post("/", verifyAccess, async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
 
-    const conn = mongoose.connection.useDb(req.payload.dbId);
-    const User = conn.model("User", UserSchema);
-    await User.create({
+    await req.db.User.create({
       firstName: firstName,
       lastName: lastName,
       email: email,

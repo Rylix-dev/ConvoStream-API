@@ -1,22 +1,22 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import Payload from "../@types/Payload";
+import Token from "../@types/Token";
 
-const verifyAccess = (req: Request, res: Response, next: NextFunction) => {
-  const { authorization } = req.headers;
-  if (!authorization) {
+const verifyUser = async (req: Request, res: Response, next: NextFunction) => {
+  const { user } = req.headers as { user: string };
+  if (!user) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
   try {
-    const token = authorization.split(" ")[1];
-    const payload = jwt.verify(token, process.env.JWT_SECRET!) as Payload;
+    const token = user.split(" ")[1];
+    const payload = jwt.verify(token, process.env.USER_SECRET!) as Token;
 
     if (!payload || typeof payload !== "object") {
       throw new Error("Invalid token");
     }
 
-    req.payload = payload;
+    req.user = payload;
     next();
   } catch (error) {
     console.error(error);
@@ -24,4 +24,4 @@ const verifyAccess = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export default verifyAccess;
+export default verifyUser;

@@ -28,6 +28,7 @@ const authenticate = (username: string, password: string) => {
           reject(response.data.error);
         }
         Cookies.set("cs_auth", response.data.token, { expires: 7 });
+        axios.defaults.headers.common["user"] = `Bearer ${response.data.token}`;
         resolve(response.data);
       })
       .catch((err) => {
