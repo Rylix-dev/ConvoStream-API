@@ -14,7 +14,7 @@ const connect = (apiKey: string, apiSecret: string) => {
     }
 
     axios
-      .post(`${global.apiUrl}/connect`, {
+      .post(`${global.cs_apiUrl}/connect`, {
         apiKey,
         apiSecret: apiSecret,
       })
@@ -22,9 +22,11 @@ const connect = (apiKey: string, apiSecret: string) => {
         if (response.data.error) {
           reject(response.data.error);
         }
-        global.apiKey = apiKey;
-        global.apiSecret = apiSecret;
-        global.dbId = response.data.dbId;
+
+        global.cs_token = response.data.token;
+        global.cs_apiSecret = apiSecret;
+        
+        axios.defaults.headers.common["Authorization"] = `Bearer ${global.cs_token}`;
 
         resolve(response.data);
       })

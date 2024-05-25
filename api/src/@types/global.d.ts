@@ -1,9 +1,8 @@
 declare namespace NodeJS {
   interface Global {
-    apiKey: string;
-    apiSecret: string;
-    apiUrl: string;
-    dbId: string;
+    cs_token: string;
+    cs_apiSecret: string;
+    cs_apiUrl: string;
   }
 }
 

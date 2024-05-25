@@ -1,7 +1,7 @@
 {
   "name": "convostream",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An API to create end-to-end encrypted Chat Applications",
   "main": "./dist/index.js",
   "scripts": {
@@ -11,23 +11,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/annuraggg/convostream.git"
+    "url": "git+https://github.com/annuraggg/convostream-api.git"
   },
   "author": "Anurag Sawant",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/annuraggg/convostream/issues"
+    "url": "https://github.com/annuraggg/convostream-api/issues"
   },
-  "homepage": "https://github.com/annuraggg/convostream#readme",
+  "homepage": "https://github.com/annuraggg/convostream-api#readme",
   "devDependencies": {
     "@types/node": "^20.12.12",
     "typescript": "^5.4.5"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
+    "@types/js-cookie": "^3.0.6",
     "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
+    "js-cookie": "^3.0.5",
+    "tweetnacl": "^1.0.3",
     "zod": "^3.23.8"
   }
 }

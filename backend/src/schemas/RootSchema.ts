@@ -18,28 +18,6 @@ export const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  status: {
-    type: String,
-    enum: ["active", "inactive"],
-    default: "active",
-  },
-  bio: {
-    type: String,
-  },
-  profilePic: {
-    type: String,
-  },
-  keys: {
-    publicKey: {
-      type: String,
-      required: true,
-    },
-  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -48,7 +26,16 @@ export const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  apiToken: {
+    type: String,
+  },
+  apiSecret: {
+    type: String,
+  },
+  dbId: {
+    type: String,
+  },
 });
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model("RootUser", UserSchema);
 export default User;

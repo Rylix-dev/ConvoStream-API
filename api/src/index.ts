@@ -1,8 +1,10 @@
-import connect from "./connect/connect.js";
+import connect from "./api/connect/connect.js";
+import { user } from "./api/user/main.js";
 import "./config/init.js";
 
-const exposed = {
+const cs = {
   connect,
+  user,
 };
 
-export default exposed;
+export default cs;
