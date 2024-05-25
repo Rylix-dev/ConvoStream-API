@@ -5,3 +5,4 @@ backend/node_modules
 backend/.env
 api/dist
 
+api/convostream-*.tgz
