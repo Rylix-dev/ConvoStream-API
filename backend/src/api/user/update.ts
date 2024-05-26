@@ -8,12 +8,12 @@ const router = express.Router();
 
 router.post("/", verifyAccess, verifyUser, reviseDB, async (req, res) => {
   const userObj = z.object({
-    firstName: z.string(),
-    lastName: z.string(),
-    username: z.string(),
-    profilePicture: z.string(),
-    bio: z.string(),
-    email: z.string(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+    username: z.string().optional(),
+    profilePicture: z.string().optional(),
+    bio: z.string().optional(),
+    email: z.string().optional(),
   });
 
   try {
@@ -27,12 +27,8 @@ router.post("/", verifyAccess, verifyUser, reviseDB, async (req, res) => {
       { _id: req.user._id },
       {
         $set: {
-          firstName: req.body.firstName,
-          lastName: req.body.lastName,
-          username: req.body.username,
-          profilePicture: req.body.profilePicture,
-          bio: req.body.bio,
-          email: req.body.email,
+          ...req.body,
+          updatedAt: new Date(),
         },
       }
     );

@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
 
     res.json({
       message: "Connected",
-      token: signed,
+      data: { token: signed },
     });
   } catch (error: any) {
     console.log(error);

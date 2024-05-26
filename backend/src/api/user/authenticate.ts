@@ -1,3 +1,11 @@
+/**
+ * Authenticates a user with the provided username and password.
+ * @param {string} username The username of the user.
+ * @param {string} password The password of the user.
+ * @returns {Promise<Response<{ token: string }>>} A promise that resolves with the authentication response.
+ * @throws {string} Throws an error if the user data is invalid or if there's an error during authentication.
+ */
+
 import express from "express";
 import { z } from "zod";
 import verifyAccess from "../../middleware/verifyAccess";
@@ -53,7 +61,7 @@ router.post("/", verifyAccess, reviseDB, async (req, res) => {
     process.env.USER_SECRET as string
   );
 
-  res.json({ message: "Authenticated", token });
+  res.json({ message: "Authenticated", data: { token } });
 });
 
 export default router;

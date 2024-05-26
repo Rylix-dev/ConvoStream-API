@@ -4,6 +4,7 @@ import Payload from "./Payload";
 import Token from "./Token";
 import { Model } from "mongoose";
 import { UserSchema } from "../schemas/UserSchema";
+import { ChatSchema } from "../schemas/ChatsSchema";
 
 declare module "express-serve-static-core" {
   interface Request {
@@ -11,6 +12,7 @@ declare module "express-serve-static-core" {
     user: Token;
     db: {
       User: Model<UserSchema>;
+      Chat: Model<ChatSchema>
     };
   }
 }

@@ -1,10 +1,9 @@
-declare namespace NodeJS {
-  interface Global {
-    cs_token: string;
-    cs_apiSecret: string;
-    cs_apiUrl: string;
-  }
+declare global {
+  var cs_apiUrl: string;
+  var cs_token: string;
+  var cs_apiSecret: string;
 }
 
-// If using the global object directly:
-declare var global: NodeJS.Global & typeof globalThis;
+declare var cs_apiUrl: string;
+declare var cs_token: string;
+declare var cs_apiSecret: string;

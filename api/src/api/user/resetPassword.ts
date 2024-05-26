@@ -1,7 +1,11 @@
 import axios from "axios";
 import { z } from "zod";
+import Response from "../../@types/Response";
 
-const resetPassword = (password: string, newPassword: string) => {
+const resetPassword = (
+  password: string,
+  newPassword: string
+): Promise<Response> => {
   return new Promise((resolve, reject) => {
     const userObj = z.object({
       password: z.string(),
@@ -19,11 +23,11 @@ const resetPassword = (password: string, newPassword: string) => {
         password,
         newPassword,
       })
-      .then((response) => {
+      .then((response: { data: Response }) => {
         if (response.data.error) {
           reject(response.data.error);
         }
-        resolve(response.data);
+        resolve(response?.data);
       })
       .catch((err) => {
         reject(
